@@ -17,6 +17,10 @@ def canUnlockAll(boxes):
     for i in boxes:
         if not isinstance(i, list):
             return False
+        else:
+            for item in i:
+                if not isinstance(item, int):
+                    return False
     Unlocked = [False for i in boxes]
     Unlocked[0] = True
     Open = [False for i in boxes]
