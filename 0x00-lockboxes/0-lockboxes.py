@@ -8,8 +8,8 @@ and each box may contain keys to the other boxes.
 
 def canUnlockAll(boxes):
     """a method that determines if all the boxes can be opened"""
-    if boxes is None or type(boxes) != list or boxes == []:
-        return
+    if boxes is None or boxes == []:
+        return False
     Unlocked = [False for i in boxes]
     Unlocked[0] = True
     Open = [False for i in boxes]
