@@ -8,10 +8,12 @@ and each box may contain keys to the other boxes.
 
 def canUnlockAll(boxes):
     """a method that determines if all the boxes can be opened"""
-    if boxes is None or boxes == []:
+    if boxes is None:
         return False
     if not isinstance(boxes, list):
         return False
+    if boxes == []:
+        return True
     for i in boxes:
         if not isinstance(i, list):
             return False
