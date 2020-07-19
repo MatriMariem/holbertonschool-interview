@@ -13,7 +13,11 @@ def canUnlockAll(boxes):
     if not isinstance(boxes, list):
         return False
     if boxes == []:
+        return False
+    if boxes == [[]]:
         return True
+    if boxes[0] == [] and len(boxes) > 1:
+        return False
     for i in boxes:
         if not isinstance(i, list):
             return False
@@ -30,5 +34,8 @@ def canUnlockAll(boxes):
             if Unlocked[k] is True:
                 Open[k] = True
                 for i in boxes[k]:
-                    Unlocked[i] = True
+                    try:
+                        Unlocked[i] = True
+                    except:
+                        pass
     return False not in Unlocked
