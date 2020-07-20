@@ -16,3 +16,9 @@ print('-----------------------------')
 boxes = [[2]]
 print(canUnlockAll(boxes), "\t: True")
 print('-----------------------------')
+boxes =  [[1, 5], [2, 0, 3], [3, 88, 1], [4, 2], [6]]
+print(canUnlockAll(boxes), "\t: True")
+print('-----------------------------')
+boxes = [[1, 2], ['hey', 'you'], ['sup']]
+print(canUnlockAll(boxes), "\t: True")
+print('-----------------------------')

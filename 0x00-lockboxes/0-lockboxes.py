@@ -9,7 +9,7 @@ and each box may contain keys to the other boxes.
 def canUnlockAll(boxes):
     """a method that determines if all the boxes can be opened"""
     """ edge cases commented out """
-    """if boxes is None:
+    if boxes is None:
         return False
     if not isinstance(boxes, list):
         return False
@@ -25,7 +25,7 @@ def canUnlockAll(boxes):
         else:
             for item in i:
                 if not isinstance(item, int):
-                    return False"""
+                    return False
     Unlocked = [False for i in boxes]
     Unlocked[0] = True
     Open = [False for i in boxes]
