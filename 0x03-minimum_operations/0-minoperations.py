@@ -12,14 +12,15 @@ from math import sqrt
 
 def factorization(n):
     """ returns the sum of prime factors of n or n if n is prime"""
-    sum = 0
+    initial_n = n
+    s = 0
     for i in range(2, int(sqrt(n)) + 1):
         while n % i == 0:
             n = n // i
-            sum += i
-    if sum == 0:
-        sum = n
-    return sum
+            s += i
+    if s == 0:
+        s = initial_n
+    return s
 
 
 def minOperations(n):
