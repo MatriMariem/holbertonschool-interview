@@ -7,6 +7,7 @@ Given a number n,
 write a method that calculates the fewest number of operations
 needed to result in exactly n H characters in the file.
 """
+import math
 
 
 def isprime(n):
@@ -18,25 +19,15 @@ def isprime(n):
     return True
 
 
-def prime_numbers(n):
-    """ finds all prime numbers that are in [2, n[ """
-    primes = []
-    for i in range(2, n):
-        if isprime(i):
-            primes.append(i)
-    return primes
-
-
-def factorization(n, primes):
-    """ returns the factorization of n """
-    factors = []
+def factorization(n):
+    """ returns the sum of prime factors of n """
     i = 0
-    while n > 1:
-        while n % primes[i] == 0:
-            n = n // primes[i]
-            factors.append(primes[i])
-        i += 1
-    return factors
+    sum = 0
+    for i in range(2, int(math.sqrt(n)) + 1):
+        while n % i == 0:
+            n = n // i
+            sum += i
+    return sum
 
 
 def minOperations(n):
@@ -47,6 +38,4 @@ def minOperations(n):
         return 0
     if isprime(n):
         return n
-    primes = prime_numbers(n)
-    factors = factorization(n, primes)
-    return (sum(factors))
+    return factorization(n)
