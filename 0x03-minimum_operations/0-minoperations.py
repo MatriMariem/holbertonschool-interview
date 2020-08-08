@@ -11,7 +11,7 @@ needed to result in exactly n H characters in the file.
 
 def factorization(n):
     """ returns the sum of prime factors of n or n if n is prime"""
-    i = 0
+    i = 2
     s = 0
     while i <= n:
         if n % i == 0:
