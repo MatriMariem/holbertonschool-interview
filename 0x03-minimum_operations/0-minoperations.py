@@ -7,15 +7,18 @@ Given a number n,
 write a method that calculates the fewest number of operations
 needed to result in exactly n H characters in the file.
 """
+from math import sqrt
 
 
 def factorization(n):
     """ returns the sum of prime factors of n or n if n is prime"""
     sum = 0
-    for i in range(2, n + 1):
+    for i in range(2, int(sqrt(n)) + 1):
         while n % i == 0:
             n = n // i
             sum += i
+    if sum == 0:
+        sum = n
     return sum
 
 
