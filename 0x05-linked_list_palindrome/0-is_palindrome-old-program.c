@@ -1,4 +1,5 @@
 #include "lists.h"
+#include <stdlib.h>
 
 /**
  * is_palindrome - a function that checks if
@@ -9,26 +10,26 @@
 int is_palindrome(listint_t **head)
 {
 	listint_t *tmp;
-	int i, size = 0;
-	listint_t *array[1024];
+	int *array, i, size = 0;
 
 	if ((!head || !(*head)) || !(*head)->next)
 		return (1);
-	for (i = 0; i < 1024; i++)
-		array[i] = NULL;
 	tmp = *head;
 	while (tmp)
 	{
-		array[size] = tmp;
+		array = realloc(array, sizeof(int) * size + 1);
+		array[size] = tmp->n;
 		size++;
 		tmp = tmp->next;
 	}
 	for (i = 0; i < (size / 2); i++)
 	{
-		if (array[i]->n != array[size - 1 - i]->n)
+		if (array[i] != array[size - 1 - i])
 		{
+			free(array);
 			return (0);
 		}
 	}
+	free(array);
 	return (1);
 }
