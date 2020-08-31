@@ -12,14 +12,16 @@ try:
     for line in sys.stdin:
         i += 1
         sp = line.split(' ')
-        FileSize += int(sp[-1])
-        status[sp[-2]] += 1
+        if len(sp) > 2:
+            FileSize += int(sp[-1])
+            if sp[-2] in status:
+                status[sp[-2]] += 1
         if i % 10 == 0:
             print("File size: {}".format(FileSize))
             for code in codes:
                 if status[code]:
                     print("{}: {}".format(code, status[code]))
-except Exception:
+except KeyboardInterrupt:
     pass
 finally:
     print("File size: {}".format(FileSize))
