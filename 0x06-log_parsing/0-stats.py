@@ -20,9 +20,9 @@ try:
                 if status[code]:
                     print("{}: {}".format(code, status[code]))
 except KeyboardInterrupt:
+    pass
+finally:
     print("File size: {}".format(FileSize))
     for code in codes:
         if status[code]:
             print("{}: {}".format(code, status[code]))
-    raise
-    sys.exit()
