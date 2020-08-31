@@ -19,7 +19,7 @@ try:
             for code in codes:
                 if status[code]:
                     print("{}: {}".format(code, status[code]))
-except KeyboardInterrupt:
+except Exception:
     pass
 finally:
     print("File size: {}".format(FileSize))
