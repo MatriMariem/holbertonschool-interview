@@ -14,21 +14,22 @@ def EightBits(integer):
 
 def validUTF8(data):
     """ A method that checks if a given data set represents a valid UTF-8 """
-    for i in range(len(data)):
+    i = 0
+    while i < len(data):
         if EightBits(data[i])[0] == '0':
-            pass
+            i += 1
         elif (EightBits(data[i])[:3] == '110' and i + 1 < len(data) and
                 EightBits(data[i + 1])[:2] == '10'):
-            pass
+            i += 2
         elif (EightBits(data[i])[:4] == '1110' and i + 2 < len(data) and
                 EightBits(data[i + 1])[:2] == '10' and
                 EightBits(data[i + 1])[:2] == '10'):
-            pass
+            i += 3
         elif (EightBits(data[i])[:5] == '11110' and i + 3 < len(data) and
                 EightBits(data[i + 1])[:2] == '10' and
                 EightBits(data[i + 2])[:2] == '10' and
                 EightBits(data[i + 3])[:2] == '10'):
-            pass
+            i += 4
         else:
             return False
     return True
