@@ -1,10 +1,12 @@
 #include "slide_line.h"
 
 /**
- *
- *
- *
- *
+ * merge_left - a function that merges to the left 2 numbers:
+ * the number on index i and its identical number on its right side
+ * if they are contiguous or separated by zeros
+ * @line: address of the array
+ * @size: size of the array
+ * @i: index of the first number to merge
  */
 void merge_left(int *line, size_t size, int i)
 {
@@ -17,18 +19,15 @@ void merge_left(int *line, size_t size, int i)
 		c++;
 	if (c == (int)size || line[c] != line[i])
 		return;
-	else
-	{
-		line[i] *= 2;
-		line[c] = 0;
-	}
-	return;
+	line[i] *= 2;
+	line[c] = 0;
 }
 
 /**
- *
- *
- *
+ * slide_left - slides the number on index i to the left
+ * @line: the address of the array
+ * @size: size of the array
+ * @i: index of the number to slide
  */
 void slide_left(int *line, size_t size, int i)
 {
@@ -45,10 +44,11 @@ void slide_left(int *line, size_t size, int i)
 }
 
 /**
- *
- *
- *
- *
+ * merge_right - a function that merges to the right 2 numbers:
+ * the number on index i and its identical number on its left side
+ * if they are contiguous or separated by zeros
+ * @line: address of the array
+ * @i: index of the first number to merge
  */
 void merge_right(int *line, int i)
 {
@@ -64,13 +64,12 @@ void merge_right(int *line, int i)
 		line[i] *= 2;
 		line[c] = 0;
 	}
-	return;
 }
 
 /**
- *
- *
- *
+ * slide_right - slides the number on index i to the right
+ * @line: the address of the array
+ * @i: index of the number to slide
  */
 void slide_right(int *line, int i)
 {
