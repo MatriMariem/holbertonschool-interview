@@ -8,28 +8,28 @@
  */
 void menger(int level)
 {
-	char *prototype;
+	char *sponge;
 	int l;
 
 	if (level < 0)
 		return;
-	if (level = 0)
+	if (level == 0)
 	{
 		printf("#\n");
 		return;
 	}
-	prototype = malloc(sizeof(char) * 3);
-	prototype[0] = '#';
-	prototype[1] = '\n';
-	prototype[2] = '\0';
+	sponge = malloc(sizeof(char) * 3);
+	sponge[0] = '#';
+	sponge[1] = '\n';
+	sponge[2] = '\0';
 	l = 0;
 	while (l < level)
 	{
 		l++;
-		prototype = level_up(prototype, l);
+		sponge = level_up(sponge, l);
 	}
-	printf("%s", prototype);
-	free(prototype);
+	printf("%s", sponge);
+	free(sponge);
 	return;
 }
 
@@ -39,18 +39,18 @@ void menger(int level)
  *
  *
  */
-char *level_up(char *proto, int level)
+char *level_up(char *sponge, int level)
 {
-	char *border, *center;
 	double size;
+
 	size = pow((double)3, (double)level);
-	return (build_sponge(proto, (int)size));
+	return (build_sponge(sponge, (int)size));
 }
 /*
  *
  *
  */
-char *build_sponge(char *proto, int size)
+char *build_sponge(char *sponge, int size)
 {
 	int len, i, c, times;
 	char *border, *center, *p_copy, *line;
@@ -58,7 +58,7 @@ char *build_sponge(char *proto, int size)
 	len = (size + 1) * (size / 3) + 1;
 	border = malloc(sizeof(char) * len);
 	center = malloc(sizeof(char) * len);
-	p_copy = strdup((const char *)proto);
+	p_copy = strdup((const char *)sponge);
 	line = strtok(p_copy, "\n");
 	i = 0;
 	c = 0;
@@ -107,21 +107,41 @@ char *build_sponge(char *proto, int size)
 		center[c] = '\n';
 		border[c] = '\n';
 		c++;
-		line = strtok(NULL, '\n');
+		line = strtok(NULL, "\n");
 	}
 	center[c] = '\0';
 	border[c] = '\0';
 	free(p_copy);
-	free(proto);
-	proto = concatenate_all(border, center, border);
+	free(sponge);
+	sponge = concatenate(border, center, size);
 	free(border);
 	free(center);
-	return (proto);
+	return (sponge);
 }
 
-char *concatenate_all(char *border, char *center, char *border)
+char *concatenate(char *border, char *center, int size)
 {
 	char *sponge;
+	int len, i, c;
 
-	sponge = malloc(sizeof(char) * );
+	len = ((size + 1) * size) + 1;
+	sponge = malloc(sizeof(char) * len);
+	c = 0;
+	for (i = 0; border[i]; i++)
+	{
+		sponge[c] = border[i];
+		c++;
+	}
+	for (i = 0; center[i]; i++)
+	{
+		sponge[c] = center[i];
+		c++;
+	}
+	for (i = 0; border[i]; i++)
+	{
+		sponge[c] = border[i];
+		c++;
+	}
+	sponge[c] = '\0';
+	return (sponge);
 }
