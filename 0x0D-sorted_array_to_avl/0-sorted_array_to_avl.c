@@ -9,8 +9,15 @@
  */
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
+	int i;
+
 	if (!array || size < 1)
 		return (NULL);
+	for (i = 1; i < (int)size; i++)
+	{
+		if (array[i] < array[i - 1])
+			return (NULL);
+	}
 	return (createAVL(array, 0, (int)size - 1, NULL));
 }
 
