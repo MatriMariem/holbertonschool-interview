@@ -41,6 +41,8 @@ avl_t *createAVL(int *array, int start, int end, avl_t *parent)
 	mid = (start + end) / 2;
 
 	root = malloc(sizeof(avl_t));
+	if (!root)
+		return (NULL);
 	root->n = array[mid];
 	root->parent = parent;
 	root->left = createAVL(array, start, mid - 1, root);
