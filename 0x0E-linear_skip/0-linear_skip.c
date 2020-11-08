@@ -8,11 +8,10 @@
  */
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
-	skiplist_t *tmp, *prev;
+	skiplist_t *tmp = list, *prev = list;
 
 	if (!list)
 		return (NULL);
-	tmp = prev = list;
 	while (tmp)
 	{
 		if (tmp->n <= value && tmp->next)
