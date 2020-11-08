@@ -1,6 +1,23 @@
 #include "search.h"
 
 /**
+ * cp -  a function that checks if a value is between prev and tmp
+ * @prev: first node
+ * @tmp: last node
+ * @value: value to search for
+ * Return: the node that contains the value or NULL
+ */
+skiplist_t *cp(skiplist_t *prev, skiplist_t *tmp, int value)
+{
+	while (prev != tmp->next)
+	{
+		if (prev->n == value)
+			return (prev);
+		prev = prev->next;
+	}
+	return (NULL);
+}
+/**
  * linear_skip - searches for a value in a sorted skip list of integers
  * @list: a pointer to the head of the skip list
  * @value: the value to search for
@@ -10,11 +27,10 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 {
 	skiplist_t *tmp = list, *prev = list;
 
-	if (!list)
-		return (NULL);
 	while (tmp)
 	{
-		if (tmp->n <= value && tmp->next)
+		if ((tmp->n < value || ((tmp->n == value) && !(cp(prev, tmp, value))))
+		&& tmp->next)
 		{
 			if (tmp->index)
 				printf("Value checked at index [%lu] = [%d]\n", tmp->index, tmp->n);
