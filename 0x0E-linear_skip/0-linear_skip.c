@@ -1,4 +1,4 @@
-#include "search_algos.h"
+#include "search.h"
 
 /**
  * linear_skip - searches for a value in a sorted skip list of integers
@@ -12,7 +12,7 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 
 	if (!list)
 		return (NULL);
-	tmp, prev = list, list;
+	tmp = prev = list;
 	while (tmp)
 	{
 		if (tmp->n <= value && tmp->next)

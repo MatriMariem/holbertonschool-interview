@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <math.h>
-#include "../search_algos.h"
+#include "../search.h"
 
 void free_skiplist(skiplist_t *list);
 
