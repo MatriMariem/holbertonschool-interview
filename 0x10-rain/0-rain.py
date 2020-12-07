@@ -17,5 +17,5 @@ def rain(walls):
         right_border = max(walls[i + 1:])
         min_border = min(left_border, right_border)
         if walls[i] < min_border:
-            rainwater += min_border + walls[i]
+            rainwater += min_border - walls[i]
     return rainwater
