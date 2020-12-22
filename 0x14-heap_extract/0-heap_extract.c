@@ -78,16 +78,22 @@ void rebuild_heap(heap_t *node)
 	}
 	else if (!node->right || node->left->n >= node->right->n)
 	{
-		temp = node->n;
-		node->n = node->left->n;
-		node->left->n = temp;
+		if (node->n < node->left->n)
+		{
+			temp = node->n;
+			node->n = node->left->n;
+			node->left->n = temp;
+		}
 		rebuild_heap(node->left);
 	}
 	else if (node->left->n < node->right->n)
 	{
-		temp = node->n;
-		node->n = node->right->n;
-		node->right->n = temp;
+		if (node->n < node->right->n)
+		{
+			temp = node->n;
+			node->n = node->right->n;
+			node->right->n = temp;
+		}
 		rebuild_heap(node->right);
 	}
 }
