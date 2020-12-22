@@ -1,5 +1,9 @@
 #ifndef HEAP_EXTRACT
 #define HEAP_EXTRACT
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 /**
  * struct binary_tree_s - Binary tree node
  *
@@ -18,5 +22,9 @@ struct binary_tree_s
 
 typedef struct binary_tree_s binary_tree_t;
 typedef struct binary_tree_s heap_t;
+void binary_tree_print(const binary_tree_t *);
 int heap_extract(heap_t **root);
+int get_size(heap_t *root);
+void heap_to_array(heap_t **array, heap_t *root, int index);
+void rebuild_heap(heap_t *node);
 #endif
