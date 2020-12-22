@@ -15,7 +15,6 @@ int heap_extract(heap_t **root)
    return(0);
    n = (*root)->n;
    size = get_size(*root);
-   printf("\n\n\n%d size\n\n\n", size);
    array = malloc(1024 * sizeof(heap_t *));
    if (!array)
    return(0);
