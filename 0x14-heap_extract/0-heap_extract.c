@@ -23,6 +23,7 @@ int heap_extract(heap_t **root)
    heap_to_array(array, *root, 0);
    if (array[size - 1] == (*root))
    {
+     free(array);
      free(*root);
      *root = NULL;
      return (n);
