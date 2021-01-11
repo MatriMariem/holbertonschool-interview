@@ -36,15 +36,13 @@ int main(int argc, char *argv[])
 	}
 	l2 = i;
 	cp1 = 0;
-	dex = 1;
-	for (i = l1 - 1; i >= 0; i--)
+	for (i = l1 - 1, dex = 1; i >= 0; i--)
 	{
 		cp1 += (argv[1][i] - '0') * dex;
 		dex *= 10;
 	}
 	cp2 = 0;
-	dex = 1;
-	for (i = l2 - 1; i >= 0; i--)
+	for (i = l2 - 1, dex = 1; i >= 0; i--)
 	{
 		cp2 += (argv[2][i] - '0') * dex;
 		dex *= 10;
