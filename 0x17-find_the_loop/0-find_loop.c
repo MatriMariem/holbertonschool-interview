@@ -29,15 +29,11 @@ listint_t *find_listint_loop(listint_t *head)
 		fast = fast->next;
 		while (fast != head)
 		{
-			while (fast != slow)
-			{
-				if (head == fast)
-					return (head);
-				fast = fast->next;
-			}
 			fast = fast->next;
-			head = head->next;
+			if (fast == slow)
+				head = head->next;
 		}
+		return (head);
 	}
 	return (NULL);
 }
