@@ -13,7 +13,7 @@ def count_words(subreddit, word_list):
     parses the title of all hot articles,
     and prints a sorted count of given keywords
     """
-    r = requests.get('https://www.reddit.com/r/{}/hot/.json'.format(subreddit),
+    r = requests.get('https://www.reddit.com/r/{}/hot.json'.format(subreddit),
                      headers={'User-agent': 'Chrome'})
     data = {}
     titles = []
