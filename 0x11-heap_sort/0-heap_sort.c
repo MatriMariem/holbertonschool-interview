@@ -30,9 +30,9 @@ void heapify(int *array, int n, int i, size_t size)
 
 	if (i < 0 || i >= (int)(size - 1))
 		return;
-	if (l < n && array[l] > array[largest])
+	if (l < n && array[l] >= array[r] && array[l] > array[largest])
 		largest = l;
-	if (r < n && array[r] > array[largest])
+	if (r < n && array[r] >= array[l] && array[r] > array[largest])
 		largest = r;
 	if (largest != i)
 	{
