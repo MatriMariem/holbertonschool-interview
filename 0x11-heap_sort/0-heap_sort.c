@@ -28,6 +28,8 @@ void heapify(int *array, int n, int i, size_t size)
 	int l = 2 * i + 1;
 	int r = 2 * i + 2;
 
+	if (i < 0 || i >= (int)(size - 1))
+		return;
 	if (l < n && array[l] > array[largest])
 		largest = l;
 	if (r < n && array[r] > array[largest])
