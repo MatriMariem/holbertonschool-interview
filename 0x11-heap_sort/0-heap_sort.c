@@ -48,17 +48,18 @@ void heapify(int *array, int n, int i, size_t size)
 
 void heap_sort(int *array, size_t size)
 {
-	int i;
+	int i, j;
 
-	if (!array || size < 1)
+	if (!array || size <= 1)
 		return;
 
-	for (i = (int)size / 2 - 1; i >= 0; i--)
-		heapify(array, (int)size, i, size);
 	for (i = (int)size - 1; i > 0; i--)
 	{
+		for (j = i; j >= 0; j--)
+		{
+		heapify(array, i, j, size);
+	  }
 		swap(&array[0], &array[i]);
-		heapify(array, i, 0, size);
 		print_array(array, size);
 	}
 }
