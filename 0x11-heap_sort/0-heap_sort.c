@@ -1,61 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "sort.h"
 
 /**
- * heap_sort - sorts an array using the sift-down heap sort algorithm
- * @array: the array to be sorted
- * @size: size of the array
+ * swap - swap two cases
+ * @a: integer
+ * @b: integer
  */
-void heap_sort(int *array, size_t size)
-{
-	int i, last, temp;
 
-	if (!array || size <= 1)
-		return;
-	last = (int)size - 1;
-	for (last = (int)size - 1; last > 0; last--)
+void swap(int *a, int *b)
+{
+	int tmp = *a;
+
+	*a = *b;
+	*b = tmp;
+}
+/**
+ * heapify - heapify array
+ * @array: array
+ * @n: integer
+ * @i: integer
+ * @size: size of array
+ */
+void heapify(int *array, int n, int i, size_t size)
+{
+	int largest = i;
+	int l = 2 * i + 1;
+	int r = 2 * i + 2;
+
+	if (l < n && array[l] > array[largest])
+		largest = l;
+	if (r < n && array[r] > array[largest])
+		largest = r;
+	if (largest != i)
 	{
-		for (i = last; i >= 0; i--)
-		{
-			heapify(array, (int)size, i, last);
-		}
-		temp = array[0];
-		array[0] = array[last];
-		array[last] = temp;
-		print_array((const int *)array, size);
+		swap(&array[i], &array[largest]);
+		heapify(array, n, largest, size);
+		print_array(array, size);
 	}
 }
 
 /**
- * heapify - recursively makes the array a max-heap
- * @array: the array is treated as a complete binary tree
- * @size: size of the array
- * @parent: index of the parent node (it will be compared with its children)
- * @last: index to mark the end of the unsorted part of the array
+ * heap_sort - heap sort array
+ * @array: array of intgers
+ * @size: size_t of array
  */
-void heapify(int *array, int size, int parent, int last)
-{
-	int left, right, temp;
 
-	left = (parent * 2) + 1;
-	right = (parent * 2) + 2;
-	if (parent < 0 || parent >= size - 1)
+void heap_sort(int *array, size_t size)
+{
+	int i;
+
+	if (!array || size < 1)
 		return;
-	if (right <= last
-			&& (array[right] >= array[left] && array[right] > array[parent]))
+
+	for (i = (int)size / 2 - 1; i >= 0; i--)
+		heapify(array, (int)size, i, size);
+	for (i = (int)size - 1; i > 0; i--)
 	{
-		temp = array[parent];
-		array[parent] = array[right];
-		array[right] = temp;
-		print_array((const int *)array, (size_t)size);
-		heapify(array, size, right, last);
-	}
-	if ((left <= last && (right > last || array[left] > array[right]))
-			&& array[left] > array[parent])
-	{
-		temp = array[parent];
-		array[parent] = array[left];
-		array[left] = temp;
-		print_array((const int *)array, (size_t)size);
-		heapify(array, size, left, last);
+		swap(&array[0], &array[i]);
+		heapify(array, i, 0, size);
+		print_array(array, size);
 	}
 }
