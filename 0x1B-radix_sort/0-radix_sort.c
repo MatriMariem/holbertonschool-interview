@@ -1,16 +1,17 @@
 #include "sort.h"
 
 /**
- *
- *
+ * radix_sort - sort an array of integers using radix sort
+ * @array: the array to be sorted
+ * @size: size of the array
  */
 void radix_sort(int *array, size_t size)
 {
 	int i, max, digits;
 
-  if (!array || size < 2)
-  return;
-  max = array[0];
+	if (!array || size < 2)
+		return;
+	max = array[0];
 	for (i = 0; i < (int)size; i++)
 	{
 		if (array[i] > max)
@@ -20,12 +21,21 @@ void radix_sort(int *array, size_t size)
 	while (max > 0)
 	{
 		max /= 10;
-    sorting_by_digits(array, size, digits);
-    digits *= 10;
-    print_array((const int *)array, size);
+		sorting_by_digits(array, size, digits);
+		digits *= 10;
+		print_array((const int *)array, size);
 	}
 }
 
+/**
+ * sorting_by_digits - sorts integers by certain digits.
+ * Starting from the least significant digits (LSD)
+ * @array: the array of integers
+ * @size: size of the array
+ * @power: determines which digits to check:
+ * power = 1 -> checks the least significant digits.
+ * power = 10 -> checks the SECOND least significant digits...
+ */
 void sorting_by_digits(int *array, size_t size, int power)
 {
 	integer_t *buckets[10], *tmp;
@@ -43,7 +53,7 @@ void sorting_by_digits(int *array, size_t size, int power)
 	{
 		tmp = buckets[i];
 
-		while(tmp)
+		while (tmp)
 		{
 			array[j] = tmp->n;
 			tmp = tmp->next;
@@ -52,7 +62,12 @@ void sorting_by_digits(int *array, size_t size, int power)
 		free_list(buckets[i]);
 	}
 }
-
+/**
+ * add_node - creates and adds a node to the end of a singly linked list
+ * @bucket: address of the head of the singly linked list
+ * @n: the number stored in the newly created node
+ * Return: address of the newly created node or NULL on failure
+ */
 integer_t *add_node(integer_t **bucket, int n)
 {
 	integer_t *tmp, *node;
@@ -66,7 +81,8 @@ integer_t *add_node(integer_t **bucket, int n)
 	{
 		*bucket = node;
 	}
-	else {
+	else
+	{
 		tmp = *bucket;
 		while (tmp && tmp->next)
 			tmp = tmp->next;
