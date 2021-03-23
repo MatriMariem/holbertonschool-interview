@@ -7,7 +7,7 @@ int height(binary_tree_t *tree)
   return (-1);
   hl = height(tree->left);
   hr = height(tree->right);
-  return (hl + 1 ? hl > hr : hr + 1);
+  return (hl > hr ? hl + 1 : hr + 1);
 }
 int binary_tree_is_avl(const binary_tree_t *tree)
 {
