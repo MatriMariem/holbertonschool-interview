@@ -41,6 +41,8 @@ int main(void)
     TEST_MATCH("", ".*");
     TEST_MATCH("hn", "h.*n");
     TEST_MATCH("hn", "h.*");
+    TEST_MATCH("hn", "h*");
+    TEST_MATCH("h", "h*");
 
 
     return (EXIT_SUCCESS);
