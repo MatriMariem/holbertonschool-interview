@@ -36,6 +36,12 @@ int main(void)
     TEST_MATCH("Holberton", ".olberton");
 
     TEST_MATCH("!H@o#l$b%e^r&t(o)n_", "!.@.#.$.%.^.&.(.)._");
+    TEST_MATCH("", "H");
+    TEST_MATCH("", ".");
+    TEST_MATCH("", ".*");
+    TEST_MATCH("hn", "h.*n");
+    TEST_MATCH("hn", "h.*");
+
 
     return (EXIT_SUCCESS);
 }
