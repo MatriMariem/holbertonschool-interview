@@ -11,13 +11,7 @@ int regex_match(char const *str, char const *pattern)
 		return (0);
 	if (!str[0] && !pattern[0])
 		return (1);
-	if (!str[0] && pattern[0])
-	{
-		if (pattern[0] != '*')
-			return (0);
-		else
-			return (1);
-	}
+
 	if (str[0] == pattern[0] || (pattern[0] == '.' && pattern[1] != '*'))
 		return (regex_match(str + 1, pattern + 1));
 	if (str[0] != pattern[0] && (pattern[0] != '.' && pattern[1] == '*'))
