@@ -6,14 +6,15 @@
  */
  int *find_substring(char const *s, char const **words, int nb_words, int *n)
  {
-   int i, full_loop, x, l, idx = 0;
+   int i, j, full_loop, x, l, idx = 0;
    int *indices = NULL, *tracker;
    int raw_idx[1024];
    for (i = 0; i < 1024; i++)
    raw_idx[i] = -1;
    i = 0;
    tracker = malloc(sizeof(int) * nb_words);
-   reset_tracker(tracker, nb_words);
+   for (j = 0; j < nb_words; j++)
+   tracker[j] = 0;
    while (contains_zeroes(tracker, nb_words) && s[i]) {
      full_loop = 1;
      // printf("&s[i] %s\n", &s[i]);
@@ -53,14 +54,16 @@
      if (!contains_zeroes(tracker, nb_words))
      {
        idx++;
-       reset_tracker(tracker, nb_words);
+       for (j = 0; j < nb_words; j++)
+       tracker[j] = 0;
      }
      if (full_loop || (!s[i] && contains_zeroes(tracker, nb_words)))
      {
        // printf("enter full loop true\n");
        raw_idx[idx] = -1;
-       reset_tracker(tracker, nb_words);
-       i++;
+       for (j = 0; j < nb_words; j++)
+       tracker[j] = 0;
+      i++;
        // i = s[i] ? next_word: i + 1;
        // printf("&s[next_word] %s\n", &s[next_word]);
        // printf("l %d, i, %d, next_word, %d , &s[i] %s\n",l, i, next_word, &s[i]);
@@ -83,13 +86,6 @@
    return(indices);
  }
 
- void reset_tracker(int *tracker, int nb_words)
- {
-   int i;
-
-   for (i = 0; i < nb_words; i++)
-   tracker[i] = 0;
- }
 
  int contains_zeroes(int *tracker, int nb_words)
  {
