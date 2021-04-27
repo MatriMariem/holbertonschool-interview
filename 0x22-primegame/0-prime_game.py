@@ -12,7 +12,7 @@ def isPrime(x):
 
 def isWinner(x, nums):
     """ prime game """
-    if x == 0 or nums == []:
+    if x < 1 or not nums or nums == []:
         return None
     r = min(x, len(nums))
     Maria = 0
